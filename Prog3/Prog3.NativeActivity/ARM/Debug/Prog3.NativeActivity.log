@@ -1,0 +1,5 @@
+﻿  ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
+  ANT_HOME=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\apache-ant-1.9.3\
+  JAVA_HOME=C:\Program Files (x86)\Java\jdk1.7.0_55
+  NDK_ROOT=C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r11c\
+  Prog3.NativeActivity.vcxproj -> C:\Users\x201\Documents\GitHub\OPOS2(new)\Program3Rev\Prog3\Prog3\ARM\Debug\libProg3.so

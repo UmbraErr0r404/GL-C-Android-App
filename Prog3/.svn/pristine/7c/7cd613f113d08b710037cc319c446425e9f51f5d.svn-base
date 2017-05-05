@@ -1,0 +1,20 @@
+#ifndef __BOTLIST_H
+#define __BOTLIST_H
+
+
+/*
+
+//3.	You MUST implement the VBot list as an array of VBOT pointers.
+// You must set the size to 200.  Don't Add if the list is full.
+//#include <cstdlib>    for randoms
+
+class BotList
+{
+	static BotList * botlist;  // Can't have a stack object with heap pointers. Heap gets destroyed when swiching Apps.
+	botlist = new BotList();
+private:
+:
+};
+
+*/
+#endif

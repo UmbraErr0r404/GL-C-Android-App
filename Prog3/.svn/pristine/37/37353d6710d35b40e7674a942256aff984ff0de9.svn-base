@@ -1,0 +1,66 @@
+// ---------------------------------------------------------------------------------------
+//  Descendent of Vbot that will move about the screen and do battle with other Vbots that
+//  it collides with.
+// ---------------------------------------------------------------------------------------
+
+
+#ifndef __DRILLBOT_H
+#define __DRILLBOT_H
+
+
+class DrillBot public Vbot
+{
+
+public:
+   // ---------------------------------------------------------------------------------------
+   //  Creates a DrillBot at position (startX_Pos, startY_Pos) with energy startEnergy.
+   //  scrWidth and scrHeight are the dimensions of the device you are running on.
+   // ---------------------------------------------------------------------------------------
+   VBot(int startX_Pos, int startY_Pos,
+      int scrWidth, int scrHeight, int startEnergy) :
+      xPos(startX_Pos), yPos(startY_Pos),
+      screenWidth(scrWidth), screenHeight(scrHeight),
+      energy(startEnergy)
+   {
+   }
+
+   bool InitGraphics(); 
+
+   virtual ~VBot() { }
+
+   // ---------------------------------------------------------------------------------------
+   //  Moves the DrillBot. Drillbot will attempt to go either right or left (whichever is 
+   //  closer) when lower than half of the screen. Once it reaches the left or right side it 
+   //  will move up the side of the screen to the top. Once reaching the top it will jump out
+   //  to a random location and proceed to fall down, while speeding up. The fall speed will
+   //  reset if it does battle. 
+   // ---------------------------------------------------------------------------------------
+   virtual void Move();
+
+   // ---------------------------------------------------------------------------------------
+   //  Determines how much energy DrillBot will use every time it does battle. Uses more 
+   //  energy when falling from the top of the screen.
+   // ---------------------------------------------------------------------------------------
+   virtual int EnergyToFightWith();
+
+   // ---------------------------------------------------------------------------------------
+   //  returns true if the DrillBot is out of energy. False otherwise. 
+   // ---------------------------------------------------------------------------------------
+   bool IsDead() const { return energy <= 0; }
+
+   void Draw();
+
+   bool CollidedWith(VBot * b) const;
+
+   void DoBattleWith(VBot * b);
+
+private:
+
+   const int DEFAULT_ENERGY = 10;
+   const int SPEED = 4;
+   int dropSpeed = 4;
+   
+
+}
+
+#endif

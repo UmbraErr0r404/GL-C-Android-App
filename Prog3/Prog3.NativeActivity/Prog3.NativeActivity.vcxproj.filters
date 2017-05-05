@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="VBot.h" />
+    <ClInclude Include="BotList.h" />
+    <ClInclude Include="BlueKittyBot.h">
+      <Filter>Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="android_native_app_glue.h">
+      <Filter>GraphicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GL_Button.h">
+      <Filter>GraphicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerDisplay.h">
+      <Filter>GraphicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>GraphicObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="RedKittyBot.h">
+      <Filter>Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="GhostKittyBot.h">
+      <Filter>Bots</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="VBot.cpp" />
+    <ClCompile Include="BotList.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="BlueKittyBot.cpp">
+      <Filter>Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueKittyBot_Data.cpp">
+      <Filter>Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostKittyBot_Data.cpp">
+      <Filter>Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="RedKittyBot_Data.cpp">
+      <Filter>Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="android_native_app_glue.c">
+      <Filter>GraphicObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GL_Button.cpp">
+      <Filter>GraphicObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerDisplay.cpp">
+      <Filter>GraphicObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="RedKittyBot.cpp">
+      <Filter>Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="GhostKittyBot.cpp">
+      <Filter>Bots</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Bots">
+      <UniqueIdentifier>{32a3a7c2-0489-4a69-9f01-93b824ca9e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicObjects">
+      <UniqueIdentifier>{674f7858-b0e2-4945-82c8-f431322e2619}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

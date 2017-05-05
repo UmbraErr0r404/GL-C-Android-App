@@ -1,0 +1,101 @@
+#include "BlueKittyBot.h"
+
+//int width, height;              // Width & Height of VBot 
+//upper left corner of your image
+
+void BlueKittyBot::Move()
+{
+	if (Alive)
+	{
+		if (xPos == 0)
+		{
+			CurrentMotion = MovingRight;
+			xPos += WALL_JUMP_DISTANCE;
+		}
+		if (yPos == 0)
+		{
+			CurrentMotion = MovingDown;
+			yPos += WALL_JUMP_DISTANCE;
+		}
+		if (xPos == screenWidth)
+		{
+			CurrentMotion = MovingLeft;
+			xPos -= WALL_JUMP_DISTANCE;
+		}
+		if (yPos == screenHeight)
+		{
+			CurrentMotion = MovingUp;
+			yPos -= WALL_JUMP_DISTANCE;
+		}
+
+		switch (CurrentMotion)
+		{
+			case Statis:
+				CurrentMotion = MovingUp;
+				break;
+			case MovingLeft:
+				xPos += 1;
+				PathCount++;
+				break;
+			case MovingRight:
+				xPos -= 1;
+				PathCount++;
+				break;
+			case MovingDown:
+				yPos += 1;
+				PathCount++;
+				break;
+			case MovingUp:
+				yPos -= 1;
+				PathCount++;
+				break;
+			default:
+				CurrentMotion = Statis;
+				break;
+		}
+
+		if (PathCount > ANTISTRAIGHTPATH)
+		{
+			CurrentMotion--;
+			PathCount = 0;
+		}
+	}//Alive
+}
+
+int BlueKittyBot::EnergyToFightWith()
+{
+	int RemovedEnergy;
+
+	if ( xPos < BONUSRANGE || xPos > screenWidth - BONUSRANGE ||   
+		 yPos < BONUSRANGE || yPos > screenHeight - BONUSRANGE   )
+	{ 
+		if (energy < ENERGYUNIT)
+		{
+			RemovedEnergy = 2 * energy;
+			energy -= energy;
+		}
+		else
+		{
+			RemovedEnergy = 2 * ENERGYUNIT;
+			energy -= ENERGYUNIT;
+		}
+	}
+	else
+	{
+		if (energy * 2 < ENERGYUNIT)
+		{
+			RemovedEnergy = energy;
+			energy -= 2 * energy;
+		}
+		else
+		{
+			RemovedEnergy = ENERGYUNIT;
+			energy -= 2 * ENERGYUNIT;
+		}
+	}
+
+	if(energy <= 0)
+		Alive = false;
+
+	return RemovedEnergy;
+}

@@ -1,0 +1,68 @@
+#ifndef __BOTLIST_H
+#define __BOTLIST_H
+
+#include "VBot.h"
+
+//3.	You MUST implement the VBot list as an array of VBOT pointers.
+// You must set the size to 200.  Don't Add if the list is full.
+//#include <cstdlib>    for randoms
+
+class BotList
+{
+private:
+	int DestroyedBots = 0;
+	int CreatedBots = 0;
+	int numElements = 0;
+	const int MAX_NUM_BOTS = 200;
+	VBot* BotArray[];
+
+public:
+	//---------------------------------------------------------------------------
+	// Constructor
+	//---------------------------------------------------------------------------
+	BotList();
+
+	//---------------------------------------------------------------------------
+	// Destructor
+	// delete the vBots then the whole array
+	//---------------------------------------------------------------------------
+	~BotList();
+
+	//---------------------------------------------------------------------------
+	// Adds a Bot to the list
+	// dont add if full
+	//---------------------------------------------------------------------------
+	void Add(const VBot* &aBotP);
+
+	//---------------------------------------------------------------------------
+	//
+	//---------------------------------------------------------------------------
+	void Delete(const VBot* &aBotP) 
+	{
+		for (int i = 0; i < numElements; i++)
+			if (BotArray[numElements] == aBotP)
+				BotArray[numElements] = BotArray[--numElements];
+	}
+
+	//---------------------------------------------------------------------------
+	// Check for valid battles
+	//---------------------------------------------------------------------------
+	void DoBattles();
+
+
+	/*
+	In the engine_draw_frame function in main.cpp(which redraws on each screen update),
+		you will call BotList methods to move all the bots, do all the battles, 
+		and draw all the bots.In addition, you will update Created / Destroyed displays,
+		draw the buttons, etc.Everything needs to be drawn since each update starts as 
+		an empty screen.
+		*/
+
+	//static BotList* botlist;  // Can't have a stack object with heap pointers. Heap gets destroyed when swiching Apps.
+	//botlist = new BotList();
+
+
+};
+
+
+#endif

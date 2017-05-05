@@ -1,0 +1,155 @@
+// ---------------------------------------------------------------------------------------
+//  DrillBot class 
+// ---------------------------------------------------------------------------------------
+
+#include "DrillBot.h"
+#include <cstdlib>
+ 
+bool VBot::InitGraphics()
+{
+   try
+   {
+      SetUpData();
+
+      glGenBuffers(1, &vboVertexHandle);
+      glBindBuffer(GL_ARRAY_BUFFER, vboVertexHandle);
+      glBufferData(GL_ARRAY_BUFFER, 2 * numPoints * sizeof(GLfloat),
+         vertices, GL_STATIC_DRAW);
+      glGenBuffers(1, &vboColorHandle);
+      glBindBuffer(GL_ARRAY_BUFFER, vboColorHandle);
+      glBufferData(GL_ARRAY_BUFFER, 4 * numPoints * sizeof(GLubyte),
+         colors, GL_STATIC_DRAW);
+      glBindBuffer(GL_ARRAY_BUFFER, 0); 
+      return true;
+   }
+   catch (...)
+   {
+      return false;
+   }
+}
+ 
+void VBot::Draw()
+{
+   glLoadIdentity();
+   glTranslatef(xPos, yPos, 0);
+
+
+   glBindBuffer(GL_ARRAY_BUFFER, vboVertexHandle);
+   glVertexPointer(2, GL_FLOAT, 0, 0);
+   glBindBuffer(GL_ARRAY_BUFFER, vboColorHandle);
+   glColorPointer(4, GL_UNSIGNED_BYTE, 0, 0);
+   glBindBuffer(GL_ARRAY_BUFFER, 0);    
+
+           
+   glEnableClientState(GL_VERTEX_ARRAY);
+   glEnableClientState(GL_COLOR_ARRAY);
+   glDrawArrays(GL_POINTS, 0, numPoints);
+   glDisableClientState(GL_COLOR_ARRAY);
+   glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+
+bool VBot::CollidedWith(VBot * b) const
+{
+   if (b == NULL)
+      return false;
+
+   return   (xPos + width) >= b->xPos
+      && (b->xPos + b->width) >= xPos
+      && (yPos + height) >= b->yPos
+      && (b->yPos + b->height) >= yPos;
+
+}
+
+void VBot::DoBattleWith(VBot * b)
+{
+   int mine = EnergyToFightWith();
+   int yours = b->EnergyToFightWith();
+   if (mine == yours)
+   {
+      energy = energy - mine / 2;
+      b->energy = b->energy - yours / 2;
+   }
+   else if (mine > yours)
+   {
+      if (b->energy > 1)
+      {
+         b->energy = b->energy - yours;
+         energy = energy + yours / 2;
+      }
+      else
+      {
+         b->energy = b->energy - 1;
+         energy = energy + 1;
+      }
+   }
+   else
+   {
+      if (energy > 1)
+      {
+         energy = energy - mine;
+         b->energy = b->energy + mine / 2;
+      }
+      else
+      {
+         b->energy = b->energy + 1;
+         energy = energy - 1;
+      }
+   }
+   dropSpeed = 4; // so that the bot stops accelerating if it does battle.
+}
+
+
+
+virtual void DrillBot::Move()
+{
+   if ( ypos >= screenHeight / 2 ) // on bottom half of screen
+   {
+      dropSpeed = 4;
+      if ( xpos <= (screenWidth / 2) ) // on left half of screen
+      {
+         if ( xpos >= SPEED ) // not at left border
+            xpos -= SPEED;
+      }
+      else // on right half of screen
+         if ( xpos <= (screenWidth - width) ) // not at right border
+            xpos += SPEED;
+   }
+   else // not on bottom half of screen
+   {
+      if (!(yPos <= SPEED)) // not at the top of the screen
+      {
+         if (xpos <= SPEED || xpos >= (screenWidth - width)) // at either the left or right side border
+         {
+            ypos -= SPEED;
+         }
+      }
+      else // at top of screen
+      {
+         if( xpos <= SPEED || xpos >= (screenWidth - width) ) // at either the right or left side border
+            xpos += (rand() % screenWidth);
+         else
+         {
+            dropSpeed += 2;
+            ypos += dropSpeed;
+         }
+      }
+   }
+}
+
+
+virtual int DrillBot::EnergyToFightWith()
+{
+	if (energy >= 10)
+	{
+		if (dropSpeed != SPEED)
+			return (energy / DEFAULT_ENERGY) * (dropSpeed - SPEED);
+		else
+		{
+			return energy / DEFAULT_ENERGY;
+		}
+	}
+	else
+		return energy;
+}
+

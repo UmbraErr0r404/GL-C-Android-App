@@ -1,0 +1,13 @@
+﻿  ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
+  ANT_HOME=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\apache-ant-1.9.3\
+  JAVA_HOME=C:\Program Files (x86)\Java\jdk1.7.0_55
+  NDK_ROOT=C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r10e\
+  main.cpp
+main.cpp(201,8): warning : unused variable 'x' [-Wunused-variable]
+                          int x = AMotionEvent_getX(event, 0);
+                              ^
+main.cpp(202,8): warning : unused variable 'y' [-Wunused-variable]
+                          int y = AMotionEvent_getY(event, 0);
+                              ^
+  2 warnings generated.
+  Prog3.NativeActivity.vcxproj -> K:\Courses\CSSE\clifton\cs2630\har_hei_hun\Prog3\ARM\Debug\libProg3.so

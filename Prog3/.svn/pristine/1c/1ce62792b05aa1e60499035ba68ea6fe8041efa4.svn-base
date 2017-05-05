@@ -1,0 +1,61 @@
+//---------------------------------------------------------------------------
+// Author: Elizabeth Harasymiw
+//
+//
+//---------------------------------------------------------------------------
+
+#ifndef __BLUEKITTYBOT_H
+#define __BLUEKITTYBOT_H
+
+#include "VBot.h"
+#include <iostream>
+using namespace std;
+
+class BlueKittyBot : public VBot
+{
+private:
+	const enum { Statis, MovingLeft, MovingRight, MovingDown, MovingUp };
+	static const int ANTISTRAIGHTPATH = 400;
+	static const int WALL_JUMP_DISTANCE = 150;
+	static const int BONUSRANGE = 200;
+	static const int ENERGYUNIT = 5;
+
+
+	static int numCreated;
+	static int numDestroyed;
+
+	bool Alive = true;
+	int PathCount = 0;
+	int CurrentMotion = Statis;
+
+	~BlueKittyBot();
+	
+	//---------------------------------------------------------------------------
+	// Written in BlueKittyBot_Data.cpp
+	//---------------------------------------------------------------------------
+	void SetUpData();
+
+	//---------------------------------------------------------------------------
+	// Moves the VBot across the screen using xPos and yPos
+	// Handles the walls or screen edges
+	//---------------------------------------------------------------------------
+	void Move();
+
+	//---------------------------------------------------------------------------
+	// Returns a varying number between 1 and energy
+	//---------------------------------------------------------------------------
+	int EnergyToFightWith();
+
+public:
+
+	//return the values of each
+	static int getNumCreated();
+
+	//return the values of each
+	static int getNumDestroyed();
+
+	//resets the counters back to 0.
+	void ResetCounters();
+};
+
+#endif

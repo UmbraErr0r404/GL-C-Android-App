@@ -1,0 +1,33 @@
+#include "BlueKittyBot.h"
+
+BlueKittyBot()
+{
+
+}
+
+~BlueKittyBot()
+{
+
+}
+
+void SetUpData()
+{
+
+}
+
+// You write this is the derived classes.
+// Move function for VBot - Must handle walls properly.
+// Must use xPos and yPos.
+void Move()
+{
+
+}
+
+// You write this is the derived classes.
+// It must return a number between 1 and energy.
+// This number can/should vary.
+int EnergyToFightWith()
+{
+
+}
+

@@ -1,0 +1,64 @@
+//---------------------------------------------------------------------------
+// Author: Clifton
+//
+//
+//---------------------------------------------------------------------------
+
+#ifndef __VBOT_H
+#define __VBOT_H
+
+//---------------------------------------------------------------------------
+//
+//---------------------------------------------------------------------------
+class VBot
+{
+public:
+
+   VBot(int startX_Pos, int startY_Pos,
+      int scrWidth, int scrHeight, int startEnergy) :
+      xPos(startX_Pos), yPos(startY_Pos), 
+      screenWidth(scrWidth), screenHeight(scrHeight), 
+      energy(startEnergy)
+   {
+   }
+
+   bool InitGraphics();   // "Delayed" part of constructor 
+
+   virtual ~VBot()  { }
+
+   // You write this is the derived classes.
+   // Move function for VBot - Must handle walls properly.
+   // Must use xPos and yPos.
+   virtual void Move() = 0;
+
+   // You write this is the derived classes.
+   // It must return a number between 1 and energy.
+   // This number can/should vary.
+   virtual int EnergyToFightWith() = 0;
+
+   bool IsDead() const { return energy <= 0; }
+
+   void Draw();
+
+   bool CollidedWith ( VBot * b ) const;
+
+   void DoBattleWith ( VBot * b );
+   
+protected:
+
+   int xPos, yPos;                 // Current position of the VBot
+   int width, height;              // Width & Height of VBot 
+   int screenWidth, screenHeight;  // Width & Height of Screen 
+   int energy;                     // Current energy of the VBot
+	  
+   GLuint vboVertexHandle;         // OpenGl Vertex VBO handle
+   GLuint vboColorHandle;          // OpenGl Color VBO handle
+   GLfloat * vertices;             // Coordinates of the points
+   GLubyte * colors;               // RGBA colors for each point
+   int numPoints;                  // Number of points
+
+   // Handles variable part of base constructor
+   virtual void SetUpData() = 0;       
+};
+
+#endif

@@ -1,0 +1,41 @@
+﻿  ANDROID_HOME=C:\Program Files (x86)\Android\android-sdk
+  ANT_HOME=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Apps\apache-ant-1.9.3\
+  JAVA_HOME=C:\Program Files (x86)\Java\jdk1.7.0_55
+  NDK_ROOT=C:\ProgramData\Microsoft\AndroidNDK64\android-ndk-r10e\
+  GL_Button.cpp
+  IntegerDisplay.cpp
+  mainR.cpp
+  In file included from mainR.cpp:24:
+./BotList.h(13,20): warning : in-class initialization of non-static data member is a C++11 extension [-Wc++11-extensions]
+          int DestroyedBots = 0;
+                            ^
+./BotList.h(14,18): warning : in-class initialization of non-static data member is a C++11 extension [-Wc++11-extensions]
+          int CreatedBots = 0;
+                          ^
+./BotList.h(15,25): warning : in-class initialization of non-static data member is a C++11 extension [-Wc++11-extensions]
+          const int MAX_NUM_BOTS = 200;
+                                 ^
+./BotList.h(22,35): warning : expression result unused [-Wunused-value]
+          BotList() { BotArray[MAX_NUM_BOTS]; };
+                      ~~~~~~~~ ~~~~~~~~~~~~^
+  In file included from mainR.cpp:27:
+./BlueKittyBot.h(14,2): warning : 'const' is not permitted on a declaration of a type [-Wmissing-declarations]
+          const enum { Statis, MovingLeft, MovingRight, MovingDown, MovingUp };
+          ^
+./BlueKittyBot.h(20,13): warning : in-class initialization of non-static data member is a C++11 extension [-Wc++11-extensions]
+          bool Alive = true;
+                     ^
+./BlueKittyBot.h(21,16): warning : in-class initialization of non-static data member is a C++11 extension [-Wc++11-extensions]
+          int PathCount = 0;
+                        ^
+./BlueKittyBot.h(22,20): warning : in-class initialization of non-static data member is a C++11 extension [-Wc++11-extensions]
+          int CurrentMotion = Statis;
+                            ^
+mainR.cpp(216,8): warning : unused variable 'x' [-Wunused-variable]
+                          int x = AMotionEvent_getX(event, 0);
+                              ^
+mainR.cpp(217,8): warning : unused variable 'y' [-Wunused-variable]
+                          int y = AMotionEvent_getY(event, 0);
+                              ^
+  10 warnings generated.
+  Prog3.NativeActivity.vcxproj -> K:\Courses\CSSE\clifton\cs2630\har_hei_hun\Prog3\ARM\Debug\libProg3.so

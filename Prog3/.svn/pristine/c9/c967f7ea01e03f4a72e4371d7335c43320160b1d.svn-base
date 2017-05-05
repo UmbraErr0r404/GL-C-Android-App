@@ -1,0 +1,9 @@
+#include "BotList.h"
+
+BotList::~BotList()
+{
+}
+
+void BotList::DoBattles()
+{
+}
